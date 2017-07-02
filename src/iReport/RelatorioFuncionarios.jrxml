@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioFuncionarios" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cfeed6ce-daaa-4515-b0cf-f66451dc2cbe">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     idfuncionarios AS ID,
+     'nome' ||' '|| 'sobrenome' AS Nome_Completo,
+     cpf AS CPF,
+     pais AS Pais,
+     estado AS Estado,
+     cidade AS Cidade,
+     bairro AS Bairro,
+     endereco AS Rua,
+     numeroendereco AS Numero
+FROM
+     "funcionarios" funcionarios
+WHERE
+     disponibilidade = true]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="nome_completo" class="java.lang.String"/>
+	<field name="cpf" class="java.lang.String"/>
+	<field name="pais" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="cidade" class="java.lang.String"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="rua" class="java.lang.String"/>
+	<field name="numero" class="java.lang.Integer"/>
+	<group name="id">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="9ac3ba70-91ff-43c8-9200-8769f9d992bb"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[ID]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="b7b3931d-980b-4bd5-844b-37b060f41ad3"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="a5036be1-249c-442d-ac85-65da47af743c"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="nome_completo">
+		<groupExpression><![CDATA[$F{nome_completo}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="2bfc1366-b654-4a14-95c5-b94200c192ac"/>
+					<textElement>
+						<font size="22" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nome_completo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="b46ec616-d84c-4445-a5e2-527cdab77125"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Nome]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="cpf">
+		<groupExpression><![CDATA[$F{cpf}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="034d33dd-8b93-444e-860a-72b0aafeef7a"/>
+					<textElement>
+						<font size="20" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="0d8ecb11-c1fa-464f-bdc7-006f782a1fdb"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[CPF]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="bf9d6987-a8c3-4033-8ea0-77d35c63a09d"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="1488c900-b094-40ce-86d8-bd03fb1530df"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TITLE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="5a958613-0255-4418-9f01-f39b77851c22"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Add a description here]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="6ea17f2c-d391-4b85-8590-e251a43d80e7"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="57">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="56" width="555" height="1" uuid="317be74d-00e4-4867-8766-4a11571bd747"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="37" width="92" height="20" uuid="8006a884-bc91-40da-b754-289be312482c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pais}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="92" y="37" width="48" height="20" uuid="0ba73eb1-ca8d-4925-8b51-8e50dda16b43"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="140" y="37" width="136" height="20" uuid="1dbc403e-3d85-4d6e-9a87-c18c54f058c8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="276" y="36" width="68" height="20" uuid="f0fa34f4-882f-4eb2-8e31-d4a2e83b618c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="344" y="36" width="143" height="20" uuid="da73a2d9-b450-44e1-ab75-adf66d1db858"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rua}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="487" y="37" width="65" height="20" uuid="2076eb2d-0564-45f8-b25c-172e72c76df5"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="487" y="0" width="65" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e09052ba-8fde-4045-be09-fe7fa119e09b"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[numero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="344" y="0" width="143" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ab23d900-fb40-4b5a-ba80-f53375956a34"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[rua]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="276" y="0" width="68" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="8ddcb46d-2ed7-4960-8f12-815cd4c00c1f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[bairro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="140" y="0" width="136" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2dadb089-e856-4208-ae38-87b3e76c6f07"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="92" y="0" width="48" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="83ed70e3-c841-4379-9c9f-0f090f2e6a1a"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="3e86aa07-99f1-4ca2-b0c5-982f40f72957"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[pais]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="3a6b383c-062b-43aa-af82-c19c86ff2785"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="eef1de74-04ca-4061-abe0-03afb37e9f61"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="bfad217c-b7bf-476d-aba7-a5301d7ad991"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

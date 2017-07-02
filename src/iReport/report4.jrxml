@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report4" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="88de42a1-ff46-4d98-979a-df8cf9382e09">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM funcionarios]]>
+	</queryString>
+	<field name="idfuncionarios" class="java.lang.Integer"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="sobrenome" class="java.lang.String"/>
+	<field name="cpf" class="java.lang.String"/>
+	<field name="pais" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="cidade" class="java.lang.String"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="endereco" class="java.lang.String"/>
+	<field name="numeroendereco" class="java.lang.Integer"/>
+	<group name="idfuncionarios">
+		<groupExpression><![CDATA[$F{idfuncionarios}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="0475ec3c-3da5-4b95-b1d8-8dab33507c21"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="c88853a9-1e2d-42f3-bf1a-28086a00dc68"/>
+				<textFieldExpression><![CDATA[$F{idfuncionarios}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="143" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="a16bbb47-743c-4918-b0f1-33e618015a31"/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="100" height="20" uuid="18a6a606-1243-4f22-b019-4bb216fab826"/>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="100" height="20" uuid="adc64698-34d4-41e2-8803-3f97372aefa6"/>
+				<text><![CDATA[Endereço]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="0" width="213" height="20" uuid="573d30fe-9a85-44dd-918e-45dd07d9dbb0"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="313" y="0" width="242" height="20" uuid="51c1dcc1-43e1-4a70-b6ba-f6867a851a7e"/>
+				<textFieldExpression><![CDATA[$F{sobrenome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="20" width="213" height="20" uuid="5f16c3f1-4ea9-44ca-80b2-30122acd7cbd"/>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="60" width="100" height="20" uuid="d8dcbdb1-96a5-4ed8-8945-fc85c3394a0a"/>
+				<textFieldExpression><![CDATA[$F{pais}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="60" width="100" height="20" uuid="a2180e72-b9d3-4af1-bfe0-42b47367b7f2"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="80" width="130" height="20" uuid="eeae8bff-ec62-4d8e-9101-1aa1317c8624"/>
+				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="80" width="123" height="20" uuid="197f63c8-002a-4837-afbe-d8ea19e2e4ad"/>
+				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="253" y="80" width="181" height="20" uuid="f8ccd6a7-8265-4088-be0f-f33401755734"/>
+				<textFieldExpression><![CDATA[$F{endereco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="80" width="100" height="20" uuid="32131051-0686-4e5c-9708-642baef4552f"/>
+				<textFieldExpression><![CDATA[$F{numeroendereco}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+</jasperReport>

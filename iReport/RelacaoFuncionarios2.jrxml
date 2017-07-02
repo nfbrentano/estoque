@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelacaoFuncionarios2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="14c1bc4c-97f2-419b-a198-901809df13e0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="139dcfc6-ebbd-4825-9109-ae3981b0011b"/>
+	<subDataset name="New Dataset 1" uuid="f52c9edd-ea9e-4ed9-ae33-85446999d276">
+		<queryString language="SQL">
+			<![CDATA[SELECT * FROM FUNCIONARIOS WHERE disponibilidade = true]]>
+		</queryString>
+		<field name="idfuncionarios" class="java.lang.Integer"/>
+		<field name="nome" class="java.lang.String"/>
+		<field name="sobrenome" class="java.lang.String"/>
+		<field name="cpf" class="java.lang.String"/>
+		<field name="pais" class="java.lang.String"/>
+		<field name="estado" class="java.lang.String"/>
+		<field name="cidade" class="java.lang.String"/>
+		<field name="bairro" class="java.lang.String"/>
+		<field name="endereco" class="java.lang.String"/>
+		<field name="numeroendereco" class="java.lang.Integer"/>
+		<group name="idfuncionarios">
+			<groupExpression><![CDATA[$F{idfuncionarios}]]></groupExpression>
+		</group>
+		<group name="nome">
+			<groupExpression><![CDATA[$F{nome}]]></groupExpression>
+		</group>
+		<group name="cpf">
+			<groupExpression><![CDATA[$F{cpf}]]></groupExpression>
+		</group>
+		<group name="pais">
+			<groupExpression><![CDATA[$F{pais}]]></groupExpression>
+		</group>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     funcionarios."nome" AS funcionarios_nome,
+     funcionarios."sobrenome" AS funcionarios_sobrenome,
+     funcionarios."cpf" AS funcionarios_cpf,
+     funcionarios."pais" AS funcionarios_pais,
+     funcionarios."estado" AS funcionarios_estado,
+     funcionarios."cidade" AS funcionarios_cidade,
+     funcionarios."bairro" AS funcionarios_bairro,
+     funcionarios."endereco" AS funcionarios_endereco,
+     funcionarios."numeroendereco" AS funcionarios_numeroendereco
+FROM
+     "funcionarios" funcionarios
+WHERE
+     disponibilidade = true]]>
+	</queryString>
+	<field name="funcionarios_nome" class="java.lang.String"/>
+	<field name="funcionarios_sobrenome" class="java.lang.String"/>
+	<field name="funcionarios_cpf" class="java.lang.String"/>
+	<field name="funcionarios_pais" class="java.lang.String"/>
+	<field name="funcionarios_estado" class="java.lang.String"/>
+	<field name="funcionarios_cidade" class="java.lang.String"/>
+	<field name="funcionarios_bairro" class="java.lang.String"/>
+	<field name="funcionarios_endereco" class="java.lang.String"/>
+	<field name="funcionarios_numeroendereco" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="90" y="0" width="383" height="36" uuid="610a2bee-58a8-438b-aef5-18b0420310ee"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Funcionários]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="156">
+			<componentElement>
+				<reportElement key="table 1" style="table 1" x="89" y="0" width="360" height="140" uuid="395428b3-64cd-4a4b-8a84-3040c1da6494"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="498e6b60-bb49-41e1-b90e-8c994e7f5ab0">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="22d0ea48-bc68-4430-a2cd-669ae850314f">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="63da52f6-6968-489d-8da8-2c8c42d316a4"/>
+								<text><![CDATA[nome]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="bdac9fa1-aa03-43ea-8831-d7bb2740f297"/>
+								<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="101" uuid="08d72f57-5724-42bc-bf88-e7214ee08bb0">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="a1ab9021-51f1-481f-819f-9ce1c622de8b"/>
+								<text><![CDATA[sobrenome]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="3a3b4c34-1b10-496c-97c2-6cb74ce658ab"/>
+								<textFieldExpression><![CDATA[$F{sobrenome}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

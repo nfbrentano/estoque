@@ -1,0 +1,238 @@
+-- -----------------------------------------------------
+-- Criação das tabelas das informações de endereços
+-- -----------------------------------------------------
+
+
+CREATE TABLE IF NOT EXISTS endereco (
+  idEndereco SERIAL,
+  rua VARCHAR(45) NULL,
+  bairro_idBairro INT NOT NULL,
+  PRIMARY KEY (idEndereco)
+);
+
+CREATE TABLE IF NOT EXISTS bairro (
+  idBairro SERIAL,
+  nome VARCHAR(25) NULL,
+  cidade_idCidade INT NOT NULL,
+  PRIMARY KEY (idBairro)
+);
+
+CREATE TABLE IF NOT EXISTS cidade (
+  idCidade SERIAL,
+  estado_idEstado INT NOT NULL,
+  nome VARCHAR(255) NULL,
+  PRIMARY KEY (idCidade)
+);
+
+CREATE TABLE IF NOT EXISTS estado (
+  idEstado SERIAL,
+  pais_idPais INT NOT NULL,
+  sigla VARCHAR(25) NULL,
+  nome VARCHAR(25) NULL,
+  PRIMARY KEY (idEstado)
+);
+
+CREATE TABLE IF NOT EXISTS pais (
+  idPais SERIAL,
+  nome VARCHAR(25) NULL,
+  PRIMARY KEY (idPais)
+);
+-- -----------------------------------------------------
+-- Criação da tabela de fabricantes
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS fabricantes (
+  idFabricantes SERIAL,
+  razaoSocial VARCHAR(50) NULL,
+  CNPJ VARCHAR(11) NULL,
+  pais VARCHAR(50) NOT NULL,
+  estado VARCHAR(50) NOT NULL,
+  cidade VARCHAR(255) NOT NULL,
+  bairro VARCHAR(50) NOT NULL,
+  endereco VARCHAR(255) NOT NULL,
+  numeroEndereco INT,
+  disponibilidade boolean,
+  PRIMARY KEY (idFabricantes)
+);
+
+
+-- -----------------------------------------------------
+-- Criação da tabela de vendas
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS vendas (
+  idVendas SERIAL,
+  nomeRazaoSocial VARCHAR(50) NULL,
+  documento VARCHAR(11) NULL,
+  valorVenda NUMERIC NOT NULL,
+  modelo_idmodelo INT,
+  quantidade_quantidademodelo INT,
+  disponibilidade boolean NOT NULL,
+  PRIMARY KEY (idVendas)
+);
+
+-- -----------------------------------------------------
+-- Criação da tabela de tipoProduto
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS tipoProduto (
+  idTipoProdutos SERIAL,
+  grandeza VARCHAR(2) NULL,
+  PRIMARY KEY (idTipoProdutos)
+);
+
+-- -----------------------------------------------------
+-- Criação da tabela de modelo
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS modelo (
+  idModelo SERIAL,
+  nome VARCHAR(45) NULL,
+  valorCompra NUMERIC,
+  quantidade INT,
+  tipoProduto_idTipoProduto VARCHAR(6) NOT NULL,
+  fabricantes_idFabricantes VARCHAR(6) NOT NULL,
+  disponibilidade boolean,
+  PRIMARY KEY (idModelo)
+);
+-- -----------------------------------------------------
+-- Criação da tabela de movimentaçoes do estoque
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS movimentacoes (
+idMovimentacoes SERIAL,
+tipo VARCHAR (1) NOT NULL,
+dataMovimentacao DATE,
+horaMovimentacao TIME,
+modelo_idModelo INT NOT NULL,
+funcionarios_idFuncionarios INT NOT NULL,
+pontoImobilizado_idPontoImobilizado INT NOT NULL,
+PRIMARY KEY (idMovimentacoes)
+);
+
+
+-- -----------------------------------------------------
+-- Criação da tabela de reparo de equipamentos
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS reparo (
+idreparos SERIAL,
+dataReparo VARCHAR,
+modelo_idModelo INT NOT NULL,
+valorReparo NUMERIC NOT NULL,
+quantidade INT NOT NULL,
+funcionarios_idFuncionarios INT NOT NULL,
+fabricantes_idFabricantes INT NOT NULL,
+disponibilidade BOOLEAN NOT NULL,
+PRIMARY KEY (idreparos)
+);
+-- -------------------------------------------------------------
+-- Criação da tabela de pontos imobilizados (setores de destino)
+-- -------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS pontoImobilizado (
+idPontoImobilizado SERIAL,
+nome VARCHAR(45) NOT NULL,
+PRIMARY KEY (idPontoImobilizado)
+);
+
+
+-- -------------------------------------------------------------
+-- Criação da tabela de Usuarios
+-- -------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS usuarios (
+idUsuarios SERIAL,
+nome VARCHAR(45) NOT NULL,
+senha VARCHAR(45) NOT NULL,
+supervisor VARCHAR(1) NOT NULL,
+PRIMARY KEY (idUsuarios)
+);
+
+
+-- -----------------------------------------------------
+-- Criação da tabela de funcionarios da empresa
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS funcionarios (
+idFuncionarios SERIAL,
+nome VARCHAR(50) NOT NULL,
+sobrenome VARCHAR(50) NOT NULL,
+CPF VARCHAR(11) NOT NULL,
+pais VARCHAR(50) NOT NULL,
+estado VARCHAR(50) NOT NULL,
+cidade VARCHAR(255) NOT NULL,
+bairro VARCHAR(50) NOT NULL,
+endereco VARCHAR(255) NOT NULL,
+numeroEndereco INT,
+disponibilidade boolean,
+PRIMARY KEY (idFuncionarios)
+);
+
+
+-- -----------------------------------------------------------
+-- Adição da chave extrangeria nas tabelas de endereço
+-- bairro, cidade, estado e pais
+-- -----------------------------------------------------------
+ALTER TABLE endereco ADD CONSTRAINT fk_endereco_bairro
+    FOREIGN KEY (bairro_idBairro)
+    REFERENCES bairro (idBairro);
+
+ALTER TABLE bairro ADD CONSTRAINT fk_bairro_cidade
+    FOREIGN KEY (cidade_idCidade)
+    REFERENCES cidade (idCidade);
+
+ALTER TABLE cidade ADD CONSTRAINT fk_cidade_estado
+    FOREIGN KEY (estado_idEstado)
+    REFERENCES estado (idEstado);
+
+ALTER TABLE estado ADD CONSTRAINT fk_estado_pais
+    FOREIGN KEY (pais_idPais)
+    REFERENCES pais (idPais);
+
+
+-- -----------------------------------------------------------
+-- Adição das chaves extrangerias na tabela 
+-- para as movimentacoes nos pontos imobilizados 
+-- e tambem com o funcionario responsavel do ponto imobilizado
+-- -----------------------------------------------------------
+
+ALTER TABLE movimentacoes ADD CONSTRAINT fk_movimentacoes_modelo
+    FOREIGN KEY (modelo_idModelo)
+    REFERENCES modelo (idModelo);
+
+ALTER TABLE movimentacoes ADD CONSTRAINT fk_movimentacoes_funcionarios
+    FOREIGN KEY (funcionarios_idFuncionarios)
+    REFERENCES funcionarios (idFuncionarios);
+
+ALTER TABLE movimentacoes ADD CONSTRAINT fk_movimentacoes_pontoImobilizado
+    FOREIGN KEY (pontoImobilizado_idPontoImobilizado)
+    REFERENCES pontoImobilizado (idPontoImobilizado);
+
+-- -----------------------------------------------------------
+-- Adição das chaves extrangerias na tabela reparo
+-- -----------------------------------------------------------
+
+ALTER TABLE reparo ADD CONSTRAINT fk_reparo_fabricantes
+    FOREIGN KEY (fabricantes_idFabricantes)
+    REFERENCES fabricantes (idFabricantes);
+
+ALTER TABLE reparo ADD CONSTRAINT fk_reparo_funcionarios
+    FOREIGN KEY (funcionarios_idFuncionarios)
+    REFERENCES funcionarios (idFuncionarios);
+
+ALTER TABLE reparo ADD CONSTRAINT fk_reparo_modelo
+    FOREIGN KEY (modelo_idModelo)
+    REFERENCES modelo (idModelo);
+	
+	
+	-- -----------------------------------------------------------
+-- Adição das chaves extrangerias na tabela vendas
+-- -----------------------------------------------------------
+
+ALTER TABLE vendas ADD CONSTRAINT fk_vendas_modelo
+    FOREIGN KEY (modelo_idmodelo)
+    REFERENCES modelo (idModelo);
+
+
+
+
